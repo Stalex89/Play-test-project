@@ -1,0 +1,11 @@
+logs
+target
+project/project
+project/target
+.idea
+.history
+.vscode
+dist
+tmp
+out
+RUNNING_PID
