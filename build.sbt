@@ -10,7 +10,10 @@ libraryDependencies ++= Seq(
   cacheApi,
   javaWs,
   "org.webjars" % "webjars-play_2.12" % "2.6.3",
-  "org.webjars" % "bootstrap" % "4.0.0-2",
+  "org.webjars" % "bootstrap" % "4.0.0-1",
+  "org.webjars" % "jquery" % "3.3.1-1",
+  "org.webjars" % "font-awesome" % "4.7.0",
+  "org.webjars" % "bootstrap-datepicker" % "1.4.0" exclude("org.webjars", "bootstrap"),
   "com.h2database" % "h2" % "1.4.192"
 )
 
