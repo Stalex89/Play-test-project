@@ -1,21 +1,31 @@
 @import helper._
 @import play.data._
 
+
 @(studentForm: Form[Student])
 
+@implicitFC = @{ b4.vertical.fieldConstructor("col-md-4", "col-md-8") }
+
 @main("Student form") {
-<h1>Student form</h1>
-@helper.form(action=routes.Students.save(), 'enctype -> "multipart/form-data") {
-    @helper.CSRF.formField
-<fieldset>
-    <legend>Student ( @studentForm("name").getValue().orElse("Nowy student") )</legend>
-    <input type="hidden" value="@studentForm("id").getValue().orElse("")" name="id" />
-    @inputText(studentForm("studId"), '_label -> "Student ID")
-    @inputText(studentForm("name"),'_label -> "Name")
-    @inputText(studentForm("birthDate"), '_label -> "Date of birth")
-    @inputFile(studentForm("picture"))
-</fieldset>
-<button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Save</button>
-<a class="btn btn-primary" href="@routes.Students.list()"><i class="glyphicon glyphicon-remove"></i> Cancel</a>
-}
+
+    <h1>Student edit form</h1>
+
+    @helper.form(action=routes.Students.save(), 'enctype -> "multipart/form-data", 'class -> "form-group") {
+        @helper.CSRF.formField
+        <fieldset>
+            <legend id="horizontal-form" class="page-header">
+                Edited account ( @studentForm("name").getValue().orElse("Nowy student") )
+            </legend>
+            <input type="hidden" value="@studentForm("id").getValue().orElse("")" name="id" />
+            @b4.text(studentForm("studId"), '_label -> "Student ID")
+            @b4.text(studentForm("name"), '_label -> "Name")
+            @b4.text(studentForm("birthDate"), '_label -> "Date of birth", 'placeholder -> "dd-mm-yyyy")
+            @b4.file(studentForm("picture"), '_label -> "Photo")
+        </fieldset>
+        @b4.free('_id -> "idStudentGroup") {
+            <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-ok"></i>Save</button>
+            <a class="btn btn-danger" href="@routes.Students.list()"><i class="glyphicon glyphicon-remove"></i>
+                Cancel</a>
+        }
+    }
 }
