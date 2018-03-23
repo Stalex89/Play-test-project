@@ -8,6 +8,7 @@ GET     /students/      controllers.Students.list()
 GET     /students/new   controllers.Students.newStudent()
 GET     /students/:studId   controllers.Students.details(studId: models.Student)
 POST    /students/      controllers.Students.save()
++nocsrf
 DELETE  /students/:studId   controllers.Students.delete(studId:Long)
 
 # Map static resources from the /public folder to the /assets URL path
