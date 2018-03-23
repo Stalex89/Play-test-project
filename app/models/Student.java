@@ -1,15 +1,10 @@
 package models;
 
-import java.util.List;
-import java.util.LinkedList;
-import play.data.validation.Constraints;
 import play.mvc.PathBindable;
 import play.libs.F;
-import java.util.Date;
-
+import java.util.*;
 import play.data.format.*;
-import play.data.validation.*;
-
+import play.data.validation.Constraints;
 import javax.persistence.*;
 import io.ebean.*;
 
@@ -44,13 +39,12 @@ public class Student extends Model implements PathBindable<Student> {
     }
     
     // supporting methods
-
     public String toString() {
         return String.format("%s (%d) (id=%d)", name, studId, id);
     }
     
 
-    // binding with forms
+    // implementation of Pathbinding
     @Override
     public Student bind(String key, String value) {
         return findByStudId(Long.parseLong(value));
@@ -67,7 +61,7 @@ public class Student extends Model implements PathBindable<Student> {
     }
 
 
-    // data access
+    // implementation of data access
     public static List<Student> findAll() {
         return find.all();
     }
@@ -96,8 +90,17 @@ public class Student extends Model implements PathBindable<Student> {
           public F.Tuple<String, Object[]> getErrorMessageKey() {
               return new F.Tuple<String,Object[]>("error.invalid.name", new Object[]{});
           }
-        
     }
+
+/*
+    other validators
+    @Required
+    @Min / @Max, np. @Min(3)
+    @MinLenght / @MaxLenght
+    @Pattern
+    @ValidateWidth
+    @Email
+*/
 }
     
     
