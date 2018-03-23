@@ -41,12 +41,13 @@ public class Students extends Controller {
     }
     
     public Result save() {
-        Form<Student> boundForm = formFactory.form(Student.class).bindFromRequest();
-        if(boundForm.hasErrors()){
+        Form<Student> studentForm = formFactory.form(Student.class).bindFromRequest();
+        if(studentForm.hasErrors()){
             flash("error", "Please correct the form below");
-            return badRequest(details.render(boundForm));
+            return badRequest(details.render(studentForm));
         }
-        Student student = boundForm.get();
+
+        Student student = studentForm.get();
      
         MultipartFormData body = request().body().asMultipartFormData();
         MultipartFormData.FilePart part = body.getFile("picture");
