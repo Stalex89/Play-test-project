@@ -1,7 +1,7 @@
 This project containst simple application that demonstrates using
 of persistence framework in Play.
 
-Objects of class Student are created and stored in database.
+Objects of class Student are created and stored in database (in memory or on disk).
 Every Student can be modified on separate page.
 
 Review the following things:
